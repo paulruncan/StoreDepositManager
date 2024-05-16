@@ -28,13 +28,17 @@ public class FirstPage extends JFrame {
 
     }
     public void tabelPrepare(){
-        String[] columnNames = firstPageController.giveFields();
-        tableModel = new DefaultTableModel(null,columnNames);
+        tableModel=firstPageController.getCustomerBLL().genTable();
         this.tabel = new JTable(tableModel);
-        firstPageController.getDataDatabase(tableModel);
         JScrollPane scp = new JScrollPane(tabel);
         scp.setBounds(70,50,200,20);
         this.contentPane.add(scp);
+    }
+    public void updateTable(){
+        this.tableModel = firstPageController.getCustomerBLL().genTable();
+        this.tabel = new JTable(tableModel);
+        JScrollPane scp = new JScrollPane(tabel);
+        scp.setBounds(70,50,200,20);
     }
     private void prepareButtons(){
         this.buttons=new JPanel();

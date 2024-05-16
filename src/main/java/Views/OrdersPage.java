@@ -49,10 +49,11 @@ public class OrdersPage extends JFrame {
     }
 
     public void tabelPrepare(){
-        String[] columnNames = ordersPageController.giveFields();
-        tableModel = new DefaultTableModel(null,columnNames);
+        //String[] columnNames = ordersPageController.giveFields();
+        //tableModel = new DefaultTableModel(null,columnNames);
+        tableModel= ordersPageController.getOrderBLL().genTable();
         this.tabel = new JTable(tableModel);
-        ordersPageController.getDataDatabase(tableModel);
+        //ordersPageController.getDataDatabase(tableModel);
         JScrollPane scp = new JScrollPane(tabel);
         scp.setBounds(70,50,200,20);
         this.contentPane.add(scp);

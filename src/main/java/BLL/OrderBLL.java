@@ -1,7 +1,11 @@
 package BLL;
 
 import DAO.OrderDAO;
+import Model.Customer;
 import Model.OrderM;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 public class OrderBLL {
     private OrderDAO orderDAO;
@@ -12,6 +16,12 @@ public class OrderBLL {
 
     public OrderDAO getOrderDAO() {
         return orderDAO;
+    }
+
+    public DefaultTableModel genTable(){
+        List<OrderM> orders = orderDAO.findAll();
+        //System.out.println(customers.get(0).getName());
+        return orderDAO.populateTable(orders);
     }
 
     /**

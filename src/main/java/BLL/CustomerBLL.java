@@ -3,6 +3,9 @@ package BLL;
 import DAO.CustomerDAO;
 import Model.Customer;
 
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  * The Bussiness Logic Class for the Customer
  */
@@ -40,6 +43,12 @@ public class CustomerBLL {
      */
     public void editCustomer(int id, String name, String mail){
         customerDAO.update(new Customer(id,name,mail));
+    }
+
+    public DefaultTableModel genTable(){
+        List<Customer> customers = customerDAO.findAll();
+        System.out.println(customers.get(0).getName());
+        return customerDAO.populateTable(customers);
     }
 
     public CustomerDAO getCustomerDAO() {

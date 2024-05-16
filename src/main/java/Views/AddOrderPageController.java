@@ -4,6 +4,7 @@ import BLL.BillBLL;
 import Model.Bill;
 import Model.Product;
 
+import javax.management.BadAttributeValueExpException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
@@ -46,6 +47,8 @@ public class AddOrderPageController implements ActionListener {
                 System.out.println(availableQuantity);
                 if(neededQuantity > availableQuantity)
                     throw new InputMismatchException("no");
+                if(neededQuantity <= 0 )
+                    throw new BadAttributeValueExpException("da");
                 addOrderPage.getOrdersPage().getOrdersPageController().getOrderBLL().addOrder(customerName,productName,neededQuantity);
                 billBLL.getBillDAO().insert(new Bill(0,customerName,productName,neededQuantity));
                 addOrderPage.getOrdersPage().getTableModel().setRowCount(0);
@@ -61,7 +64,10 @@ public class AddOrderPageController implements ActionListener {
         } catch (InputMismatchException exception){
             exception.printStackTrace();
             JOptionPane.showMessageDialog(addOrderPage,"Not enough Stock","Error",JOptionPane.ERROR_MESSAGE);
-        } catch (Exception exception){
+        } catch (BadAttributeValueExpException exception){
+            exception.printStackTrace();
+            JOptionPane.showMessageDialog(addOrderPage,"NOT ACCEPTING NEGATIVE VALUES", "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception exception){
             exception.printStackTrace();
             JOptionPane.showMessageDialog(addOrderPage,"Wrong Quantity Format","Error",JOptionPane.ERROR_MESSAGE);
 

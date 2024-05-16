@@ -26,6 +26,8 @@ public class AddClientPageController implements ActionListener {
                 addClientPage.getFirstPage().getFirstPageController().getCustomerBLL().addCustomer(name,mail);
                 addClientPage.getFirstPage().getTableModel().setRowCount(0);
                 addClientPage.getFirstPage().getFirstPageController().getDataDatabase(addClientPage.getFirstPage().getTableModel());
+                //addClientPage.getFirstPage().setTableModel(addClientPage.getFirstPage().getFirstPageController().getCustomerBLL().genTable());
+                //addClientPage.getFirstPage().updateTable();
             }
         } catch (Exception exception){
             exception.printStackTrace();

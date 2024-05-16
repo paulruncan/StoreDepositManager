@@ -2,6 +2,7 @@ package DAO;
 
 import Connection.ConnectionFact;
 
+import javax.swing.table.DefaultTableModel;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.*;
@@ -279,7 +280,7 @@ public class AbstractDAO<T> {
      * @param resultSet based on this resultSet the objects are built
      * @return A list with the objects created from the table entries
      */
-    private List<T> createObjects(ResultSet resultSet) {
+    public List<T> createObjects(ResultSet resultSet) {
         List<T> list = new ArrayList<T>();
         Constructor[] ctors = type.getDeclaredConstructors();
         Constructor ctor = null;
@@ -318,5 +319,26 @@ public class AbstractDAO<T> {
         }
         return list;
     }
+    public DefaultTableModel populateTable( List<T> objects) {
+        try {
+            Field field;
+            //DefaultTableModel model = new DefaultTableModel();
+            String[] columnNames = this.getFields();
+            DefaultTableModel model = new DefaultTableModel(null, columnNames);
+            String[] object = new String[this.getFields().length];
+            for( T t : objects ) {
+                for( int i = 0; i < this.getFields().length; i++ ) {
+                    field = t.getClass().getDeclaredField(columnNames[i]);
+                    field.setAccessible(true);
+                    object[i] = field.get(t).toString();
+                }
+                model.addRow(object);
+            }
 
+            return model;
+        } catch (Exception e){
+            e.printStackTrace();
+    }
+        return null;
+    }
 }

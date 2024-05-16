@@ -1,7 +1,11 @@
 package BLL;
 
 import DAO.ProductDAO;
+import Model.Customer;
 import Model.Product;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  * The bussines logic for the Product
@@ -14,6 +18,11 @@ public class ProductBLL {
 
     public ProductDAO getProductDAO() {
         return productDAO;
+    }
+    public DefaultTableModel genTable(){
+        List<Product> customers = productDAO.findAll();
+        System.out.println(customers.get(0).getName());
+        return productDAO.populateTable(customers);
     }
 
     /**
