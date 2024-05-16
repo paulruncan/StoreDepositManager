@@ -46,18 +46,8 @@ public class AddOrderPage extends JFrame {
     }
 
     private void tabelProductPrepare() {
-        //String[] columnNames = productBLL.getProductDAO().getFields();
-        //tableProductModel = new DefaultTableModel(null,columnNames);
         tableProductModel = productBLL.genTable();
         this.tabelProduct = new JTable(tableProductModel);
-        //List<Product> products = productBLL.getProductDAO().findAll();
-        //String[] object;
-        //for( Product product : products){
-            //System.out.println((String) customer.getId() + " " + customer.getName());
-            //String da = customer.getId
-        //    object = new String[]{Integer.toString(product.getId()), product.getName(), Integer.toString(product.getQuantity())};
-        //    tableProductModel.addRow(object);
-        //}
         JScrollPane scp = new JScrollPane(tabelProduct);
         scp.setBounds(70,50,200,20);
         this.contentPane.add(scp);
@@ -79,18 +69,8 @@ public class AddOrderPage extends JFrame {
     }
 
     private void tabelCustomerPrepare() {
-        //String[] columnNames = customerBLL.getCustomerDAO().getFields();
-        //tableCustomerModel = new DefaultTableModel(null,columnNames);
         tableCustomerModel = customerBLL.genTable();
         this.tabelCustomer = new JTable(tableCustomerModel);
-        //List<Customer> customers = customerBLL.getCustomerDAO().findAll();
-        //String[] object;
-        //for( Customer customer : customers){
-            //System.out.println((String) customer.getId() + " " + customer.getName());
-            //String da = customer.getId
-        //    object = new String[]{Integer.toString(customer.getId()), customer.getName(), customer.getMail()};
-        //    tableCustomerModel.addRow(object);
-        //}
         JScrollPane scp = new JScrollPane(tabelCustomer);
         scp.setBounds(70,50,200,20);
         this.contentPane.add(scp);

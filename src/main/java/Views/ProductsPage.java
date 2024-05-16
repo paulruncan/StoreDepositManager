@@ -28,11 +28,8 @@ public class ProductsPage extends JFrame {
 
     }
     public void tabelPrepare(){
-        //String[] columnNames = productsPageController.giveFields();
-        //tableModel = new DefaultTableModel(null,columnNames);
         tableModel= productsPageController.getProductBLL().genTable();
         this.tabel = new JTable(tableModel);
-        //productsPageController.getDataDatabase(tableModel);
         JScrollPane scp = new JScrollPane(tabel);
         scp.setBounds(70,50,200,20);
         this.contentPane.add(scp);

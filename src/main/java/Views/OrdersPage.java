@@ -36,24 +36,13 @@ public class OrdersPage extends JFrame {
         this.buttonAdd.setPreferredSize(new Dimension(10,10));
         this.buttonAdd.setActionCommand("addorder");
         this.buttonAdd.addActionListener(this.ordersPageController);
-       // this.buttonDelete=new JButton("Delete Order");
-       // this.buttonDelete.setActionCommand("deleteorder");
-       // this.buttonDelete.addActionListener(this.ordersPageController);
-       // this.buttonEdit=new JButton("Edit Order");
-       // this.buttonEdit.setActionCommand("editorder");
-       // this.buttonEdit.addActionListener(this.ordersPageController);
         this.buttons.add(this.buttonAdd);
-       // this.buttons.add(this.buttonDelete);
-       // this.buttons.add(this.buttonEdit);
         this.contentPane.add(this.buttons);
     }
 
     public void tabelPrepare(){
-        //String[] columnNames = ordersPageController.giveFields();
-        //tableModel = new DefaultTableModel(null,columnNames);
         tableModel= ordersPageController.getOrderBLL().genTable();
         this.tabel = new JTable(tableModel);
-        //ordersPageController.getDataDatabase(tableModel);
         JScrollPane scp = new JScrollPane(tabel);
         scp.setBounds(70,50,200,20);
         this.contentPane.add(scp);
